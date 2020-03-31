@@ -16,6 +16,7 @@ namespace WpfApp1
         {
             InitializeComponent();
         }
+        public string dirScanner;
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             if (textBox1.Text == null || textBox1.Text == "")
@@ -25,7 +26,7 @@ namespace WpfApp1
             }
             textBox2.Text = "";
             string searchText = "";
-            string dirScanner = @"D:\xampp\htdocs\t-site-core-master\view\page\";
+            //string dirScanner = @"D:\xampp\htdocs\t-site-core-master\view\page\";
             //searchText = searchText.Replace(@"/", @"\/");
             int lines = textBox1.LineCount;
             string[] list = textBox1.Text.Split(new System.Char[] { '\n', '\r' }, System.StringSplitOptions.RemoveEmptyEntries);
@@ -132,7 +133,7 @@ namespace WpfApp1
             string searchText = "";
 
 
-            string dirScanner = @"D:\tsutaya\tsutaya\project_TSUTAYA\10.Share\QuanLD\asset_page_20200130\net-tsutaya-data\export\home\nettsutaya\jlycms\view\page\";
+            //string dirScanner = @"D:\tsutaya\tsutaya\project_TSUTAYA\10.Share\QuanLD\asset_page_20200130\net-tsutaya-data\export\home\nettsutaya\jlycms\view\page\";
             //textBox2.Text = searchText.Replace(@"/", @"\/");
 
             int lines = textBox1.LineCount;
@@ -167,7 +168,7 @@ namespace WpfApp1
             string searchText = "";
 
 
-            string dirScanner = @"D:\tsutaya\tsutaya\project_TSUTAYA\10.Share\QuanLD\asset_page_20200130\net-tsutaya-data\export\home\nettsutaya\jlycms\approved\page\";
+            //string dirScanner = @"D:\tsutaya\tsutaya\project_TSUTAYA\10.Share\QuanLD\asset_page_20200130\net-tsutaya-data\export\home\nettsutaya\jlycms\approved\page\";
             //textBox2.Text = searchText.Replace(@"/", @"\/");
 
             int lines = textBox1.LineCount;
@@ -206,7 +207,14 @@ namespace WpfApp1
 
         private void button1_Click(object sender, RoutedEventArgs e)
         {
-            System.Windows.Form
+            var dialog = new System.Windows.Forms.FolderBrowserDialog();
+            if (dialog.ShowDialog().ToString() == "OK")  //check for OK...they might press cancel, so don't do anything if they did.
+            {
+                var path = dialog.SelectedPath;
+                FileNameTextBox.Text = path;
+                dirScanner = path;
+                //do something with path
+            }
         }
     }
 }
